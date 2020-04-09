@@ -26,8 +26,8 @@ public class PlatDaoMemoireTest {
 
 	@Test
 	void testAjouterPlatCasPassants() {
-		platDaoMemoire.ajouterPlat("Bruscheta", 600);
-		platDaoMemoire.ajouterPlat("Tapas", 200);
+		platDaoMemoire.ajouterPlat("Bruscheta", 1600);
+		platDaoMemoire.ajouterPlat("Tapas", 1200);
 
 		assertEquals(false, platDaoMemoire.listerPlats().isEmpty());
 	}
