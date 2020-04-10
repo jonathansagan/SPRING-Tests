@@ -3,12 +3,14 @@ package dev.service;
 import java.util.List;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 import dev.dao.IPlatDao;
 import dev.entite.Plat;
 import dev.exception.PlatException;
 
 @Profile("Service2")
+@Component
 public class PlatServiceVersion2 implements IPlatService {
 
 	private IPlatDao dao;
