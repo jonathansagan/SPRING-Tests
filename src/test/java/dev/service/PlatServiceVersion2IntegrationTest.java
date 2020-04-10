@@ -18,6 +18,7 @@ import dev.dao.PlatDaoMemoire;
 @ActiveProfiles({ "PlatMemoire", "Service2" })
 public class PlatServiceVersion2IntegrationTest {
 
+	// permet d'injecter le bean à tester
 	@Autowired
 	private IPlatService platService2;
 	private IPlatDao platDaoMemoire;
