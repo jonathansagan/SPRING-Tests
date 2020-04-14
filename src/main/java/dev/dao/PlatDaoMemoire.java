@@ -1,27 +1,30 @@
 package dev.dao;
 
-import dev.entite.Plat;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import dev.entite.Plat;
+
 @Component
-@Profile ("PlatMemoire")
+@Profile("PlatMemoire")
 public class PlatDaoMemoire implements IPlatDao {
 
-    private List<Plat> listePlats = new ArrayList<>();
+	private List<Plat> listePlats = new ArrayList<>();
 
-    @Override
-    public List<Plat> listerPlats() {
-        return listePlats;
-    }
+	@Override
 
-    @Override
-    public void ajouterPlat(String nomPlat, Integer prixPlat) {
-        Plat nouveauPlat = new Plat(nomPlat, prixPlat);
-        listePlats.add(nouveauPlat);
-    }
+	public List<Plat> listerPlats() {
+		return listePlats;
+	}
+
+	@Override
+
+	public void ajouterPlat(String nomPlat, Integer prixPlat) {
+		Plat nouveauPlat = new Plat(nomPlat, prixPlat);
+		listePlats.add(nouveauPlat);
+	}
+
 }

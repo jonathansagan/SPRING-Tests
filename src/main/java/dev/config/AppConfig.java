@@ -15,7 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 
 // Cas Dao Fichier
 @PropertySource("app.properties")
-@Import(DataSourceConfig.class)
+@Import({ DataSourceConfig.class, JpaConfig.class })
 public class AppConfig {
 
 	@Bean
