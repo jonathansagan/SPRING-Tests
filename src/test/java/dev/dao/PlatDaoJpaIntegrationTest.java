@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.transaction.annotation.Transactional;
 
 import dev.config.DataSourceH2TestConfig;
 import dev.config.JpaConfig;
@@ -19,8 +19,9 @@ import dev.entite.Plat;
 
 //Creation du context
 @SpringJUnitConfig({ JpaConfig.class, PlatDaoJpa.class, DataSourceH2TestConfig.class })
-@ActiveProfiles({ "jpa", "Service1" })
-@TestPropertySource("classpath:test.properties")
+@Transactional
+@ActiveProfiles({ "jpa" })
+
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
 public class PlatDaoJpaIntegrationTest {
