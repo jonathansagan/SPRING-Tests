@@ -8,11 +8,12 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import dev.PlatRowMapper;
 import dev.entite.Plat;
 
 @Repository
 
-@Profile("Platjdbc")
+@Profile("PlatJdbc")
 public class PlatDaoJdbc implements IPlatDao {
 	private JdbcTemplate jdbcTemplate;
 
@@ -26,13 +27,15 @@ public class PlatDaoJdbc implements IPlatDao {
 
 	@Override
 	public List<Plat> listerPlats() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM plats";
+		List<Plat> plats = jdbcTemplate.query(sql, new PlatRowMapper());
+		return plats;
 	}
 
 	@Override
 	public void ajouterPlat(String nomPlat, Integer prixPlat) {
-		// TODO Auto-generated method stub
+		String sql = "INSERT INTO plats (nom,prix) VALUES (?,?)";
+		jdbcTemplate.update(sql, nomPlat, prixPlat);
 
 	}
 

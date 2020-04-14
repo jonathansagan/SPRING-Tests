@@ -61,10 +61,15 @@
 		</dependency>
 		<!-- exemple de connecteur jdbc -->
 		<dependency>
-<groupId>org.mariadb.jdbc</groupId>
-<artifactId>mariadb-java-client</artifactId>
-<version>2.4.0</version>
-</dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
