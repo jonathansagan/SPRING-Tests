@@ -1,78 +1,72 @@
 package dev.ihm;
 
-import dev.exception.PlatException;
-import dev.ihm.options.IOptionMenu;
-import dev.ihm.options.OptionAjouterPlat;
-import dev.ihm.options.OptionListerPlats;
-import dev.ihm.options.OptionTerminer;
-import dev.service.IPlatService;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+
+import dev.exception.PlatException;
+import dev.ihm.options.IOptionMenu;
 
 @Controller
 public class Menu {
-@Autowired
-    private Map<Integer, IOptionMenu> actions;
 
-    private String menu;
-    private Scanner scanner;
+	private Map<Integer, IOptionMenu> actions;
 
-    public Menu(Scanner scanner, List<IOptionMenu> options) {
-        this.scanner = scanner;
-        this.actions = buildActions(options);
-    }
+	private String menu;
+	private Scanner scanner;
 
-    public Map<Integer, IOptionMenu> buildActions(List<IOptionMenu>  options){
-        Map<Integer, IOptionMenu> actions = new HashMap<Integer, IOptionMenu>();
-        int compteur = 1;
-        for(IOptionMenu opt : options) {
+	public Menu(Scanner scanner, List<IOptionMenu> options) {
+		this.scanner = scanner;
+		this.actions = buildActions(options);
+	}
 
-            actions.put(compteur, opt);
-            compteur++;
-        }
+	public Map<Integer, IOptionMenu> buildActions(List<IOptionMenu> options) {
+		Map<Integer, IOptionMenu> actions = new HashMap<Integer, IOptionMenu>();
+		int compteur = 1;
+		for (IOptionMenu opt : options) {
 
-        return actions;
-    }
+			actions.put(compteur, opt);
+			compteur++;
+		}
 
-    public void afficher() {
+		return actions;
+	}
 
-        boolean continuer = true;
+	public void afficher() {
 
-        while (continuer) {
+		boolean continuer = true;
 
-            System.out.println(getMenuTexte());
+		while (continuer) {
 
-            int choix = this.scanner.nextInt();
+			System.out.println(getMenuTexte());
 
-            try {
-                this.actions.get(choix).executer();
-            } catch (PlatException e) {
-                continuer = false;
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+			int choix = this.scanner.nextInt();
 
-    private String getMenuTexte() {
-        if (menu == null) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("** Restaurant Console App **");
-            sb.append("\n");
-            this.actions.forEach((index, option) -> {
-                sb.append(index);
-                sb.append(". ");
-                sb.append(option.getTitre());
-                sb.append("\n");
-            });
-            this.menu = sb.toString();
-        }
-        return this.menu;
-    }
+			try {
+				this.actions.get(choix).executer();
+			} catch (PlatException e) {
+				continuer = false;
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	private String getMenuTexte() {
+		if (menu == null) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("** Restaurant Console App **");
+			sb.append("\n");
+			this.actions.forEach((index, option) -> {
+				sb.append(index);
+				sb.append(". ");
+				sb.append(option.getTitre());
+				sb.append("\n");
+			});
+			this.menu = sb.toString();
+		}
+		return this.menu;
+	}
 }

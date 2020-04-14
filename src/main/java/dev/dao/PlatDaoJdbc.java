@@ -4,12 +4,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import dev.entite.Plat;
 
 @Repository
+
+@Profile("Platjdbc")
 public class PlatDaoJdbc implements IPlatDao {
 	private JdbcTemplate jdbcTemplate;
 
