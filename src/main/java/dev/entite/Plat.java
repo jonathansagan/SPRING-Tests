@@ -1,5 +1,7 @@
 package dev.entite;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,9 @@ public class Plat {
 	private String nom;
 	@Column(name = "prix")
 	private Integer prixEnCentimesEuros;
+
+	@ManyToMany(mappedBy = "plats")
+	private List<Ingredient> ingredients = new ArrayList<>();
 
 	public Plat() {
 	}
