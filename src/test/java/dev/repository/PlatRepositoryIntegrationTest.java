@@ -23,7 +23,7 @@ import dev.entite.Plat;
 @SpringJUnitConfig({ JpaConfig.class, DataSourceH2TestConfig.class })
 @ActiveProfiles({ "jpa" })
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-@Transactional
+@Transactional // fait un rollback à chaque fin de test
 
 public class PlatRepositoryIntegrationTest {
 
@@ -64,7 +64,7 @@ public class PlatRepositoryIntegrationTest {
 
 	@Test
 	void testFindById() {
-		assertThat(platRepository.findById(1)).hasValue(new Plat("Magret de canard", 0));
+		assertThat(platRepository.findById(1)).hasValue(new Plat("Magret de canard", 1300));
 	}
 
 	@Test
